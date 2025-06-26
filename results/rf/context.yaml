@@ -1,0 +1,65 @@
+calls:
+- max_evals: 1200
+  timeout: null
+search:
+  acq_func: UCBd
+  acq_optimizer: mixedga
+  acq_optimizer_freq: 1
+  evaluator:
+    num_workers: 16
+    type: RayEvaluator
+  filter_duplicated: true
+  filter_failures: min
+  initial_point_generator: random
+  initial_points:
+  - bootstrap: true
+    criterion: squared_error
+    max_depth: 0
+    max_features: sqrt
+    max_samples: 1.0
+    min_impurity_decrease: 0.0
+    min_samples_leaf: 1
+    min_samples_split: 2
+    n_estimators: 2048
+    splitter: best
+  kappa: 1.96
+  kwargs: {}
+  log_dir: results/rf/
+  max_failures: 100
+  moo_lower_bounds: null
+  moo_scalarization_strategy: Chebyshev
+  moo_scalarization_weight: null
+  multi_point_strategy: cl_max
+  n_initial_points: 10
+  n_jobs: 1
+  n_points: 10000
+  objective_scaler: auto
+  problem: '{"name": "sklearn.TreesEnsembleWorkflow", "hyperparameters": [{"type":
+    "categorical", "name": "bootstrap", "choices": [true, false], "weights": null,
+    "default_value": true, "meta": null}, {"type": "categorical", "name": "criterion",
+    "choices": ["squared_error", "absolute_error", "friedman_mse"], "weights": null,
+    "default_value": "squared_error", "meta": null}, {"type": "uniform_int", "name":
+    "max_depth", "lower": 0, "upper": 100, "default_value": 0, "log": false, "meta":
+    null}, {"type": "categorical", "name": "max_features", "choices": ["all", "sqrt",
+    "log2"], "weights": null, "default_value": "sqrt", "meta": null}, {"type": "uniform_float",
+    "name": "min_impurity_decrease", "lower": 0.0, "upper": 1.0, "default_value":
+    0.0, "log": false, "meta": null}, {"type": "uniform_int", "name": "min_samples_leaf",
+    "lower": 1, "upper": 25, "default_value": 1, "log": false, "meta": null}, {"type":
+    "uniform_int", "name": "min_samples_split", "lower": 2, "upper": 50, "default_value":
+    2, "log": false, "meta": null}, {"type": "constant", "name": "n_estimators", "value":
+    2048, "meta": null}, {"type": "categorical", "name": "splitter", "choices": ["random",
+    "best"], "weights": null, "default_value": "best", "meta": null}, {"type": "uniform_float",
+    "name": "max_samples", "lower": 0.001, "upper": 1.0, "default_value": 1.0, "log":
+    false, "meta": null}], "conditions": [{"type": "EQ", "child": "max_samples", "parent":
+    "bootstrap", "value": true}], "forbiddens": [], "python_module_version": "1.2.0",
+    "format_version": 0.4}'
+  random_state: null
+  scheduler: null
+  stopper: null
+  surrogate_model: ET
+  surrogate_model_kwargs: null
+  type: CBO
+  update_prior: false
+  update_prior_quantile: 0.1
+  verbose: 0
+  xi: 0.001
